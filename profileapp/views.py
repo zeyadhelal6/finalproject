@@ -4,10 +4,10 @@ from django.contrib.auth.decorators import login_required
 from .forms import ServiceForm
 
 def profileapp(request):
-  profiles = Profile.objects.all()
+  profile = Profile.objects.get(user=request.user)
   services = Service.objects.all()
   context = {
-        "profiles":profiles,
+        "profile":profile,
         "services":services
     }
   return render (request, 'profile.html', context) 
